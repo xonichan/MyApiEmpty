@@ -51,5 +51,4 @@ public class BlogController {
         return "blog-details";
     }
 
-
 }
