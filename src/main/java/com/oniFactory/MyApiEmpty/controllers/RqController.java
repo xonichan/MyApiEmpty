@@ -15,7 +15,6 @@ public class RqController {
     @Autowired
     private RqRepository rqRepository;
 
-
     @GetMapping("/blog/addRq")
     public String blogAddRq(Model model) {
         return "blog-add-rq";
@@ -24,14 +23,25 @@ public class RqController {
     @PostMapping("/blog/addRq")
     public String blogRqAdd(@RequestParam String rq_text, Model model) {
         PostRq postRq = new PostRq(rq_text);
-        rqRepository.save(postRq);
-        return "redirect:/table";
+        try {
+            rqRepository.save(postRq);
+            return "redirect:/table";
+        } catch (Exception e) {
+             System.err.print(e.toString());
+            //  model.addAttribute("error", "Текст уже существует");
+             return "blog-add-rq";
+        }
     }
 
     @GetMapping("/table")
     public String rqTable(Model model) {
-        Iterable<PostRq> postsRq = rqRepository.findAll();
-        model.addAttribute("postsRq", postsRq);
-        return "rq-table";
+        try {
+            Iterable<PostRq> postsRq = rqRepository.findAll();
+            model.addAttribute("postsRq", postsRq);
+            return "rq-table";
+        } catch (Exception e) {
+            System.err.print(e.toString());
+            return "rq-table";
+        }
     }
 }

@@ -1,57 +1,61 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title th:text="${title}"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title th:text="${title}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <style>
-        table, th, td {
-          border: 1px solid black;
-
+        table,
+        th,
+        td {
+            border: 1px solid black;
         }
     </style>
 </head>
+<header>
+    <div th:insert="~{blocks/header :: header}"></div>
+</header>
+
 <body>
-<header th:insert="blocks/header :: header"></header>
-
-<div class="container mt-5 mb-5">
-    <h1>Список запросов</h1><br>
-
-        <table  style="width:100%" align="center">
+    <div class="container mt-5 mb-5">
+        <h1>Список запросов</h1><br>
+        <table style="width:100%" align="center">
             <tr>
                 <td style="width:30%" class="px-1">
                     <h5>ID</h5>
-                <td/>
+                    <td />
                 <td style="width:30%" class="px-1">
                     <h5>Data</h5>
-                <td/>
+                    <td />
                 <td style="width:30%" class="px-1">
                     <h5>Request</h5>
-                <td/>
+                    <td />
                 <td style="width:10%" class="px-1">
                     <h5>Views</h5>
-                <td/>
+                    <td />
             </tr>
             <div th:each="el : ${postsRq}">
-            <tr>
-                <td style="width:30%" class="px-1">
-                    <p th:text="${el.id}"/>
-                <td/>
-                <td style="width:30%" class="px-1">
-                    <p th:text="${el.rq_date_time}"/>
-                <td/>
-                <td style="width:30%" class="px-1">
-                    <p th:text="${el.rq_text}"/>
-                <td/>
-                <td style="width:10%" class="px-1">
-                    <p th:text="${el.views}"/>
-                <td/>
-            </tr>
+                <tr>
+                    <td style="width:30%" class="px-1">
+                        <p th:text="${el.id}" />
+                        <td />
+                    <td style="width:30%" class="px-1">
+                        <p th:text="${el.rq_date_time}" />
+                        <td />
+                    <td style="width:30%" class="px-1">
+                        <p th:text="${el.rq_text}" />
+                        <td />
+                    <td style="width:10%" class="px-1">
+                        <p th:text="${el.views}" />
+                        <td />
+                </tr>
             </div>
         </table>
-
-</div>
-
-<div th:insert="blocks/footer :: footer"></div>
+    </div>
 </body>
+<footer>
+    <div th:insert="~{blocks/footer :: footer}"></div>
+</footer>
+
 </html>

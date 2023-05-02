@@ -7,7 +7,10 @@
 
 </head>
 <body>
-<header th:insert="blocks/header :: header"></header>
+<header>
+    <div th:insert="~{blocks/header :: header}"></div>
+</header>
+
 
 <div class="container mt-5 mb-5">
     <h1>Добавление запроса</h1>
@@ -15,8 +18,20 @@
         <textarea name="rq_text" placeholder="Введите текст запроса" class="form-control"></textarea><br>
         <button type="submit" class="btn btn-success">Добавить запрос</button>
     </form>
+    <script>
+		function validateName() {
+			var input = document.getElementById("name_input").value;
+			if (input === "") {
+				alert("Ошибка ввода!");
+			} else {
+				alert("Имя введено успешно: " + input);
+			}
+		}
+	</script>
 </div>
 
-<div th:insert="blocks/footer :: footer"></div>
+<footer>
+    <div th:insert="~{blocks/footer :: footer}"></div>
+</footer>
 </body>
 </html>
